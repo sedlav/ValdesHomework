@@ -1,0 +1,39 @@
+Sub tix()
+
+Dim tix As String
+
+Dim tix_vol As Double
+tix_vol = 0
+
+Dim summary_row As Integer
+summary_row = 2
+
+Cells(1, 9).Value = "Ticker Symbol"
+Cells(1, 10).Value = "Total Stock Volume"
+
+For r = 2 To 797711
+
+If Cells(r + 1, 1).Value <> Cells(r, 1).Value Then
+
+tix = Cells(r, 1).Value
+
+tix_vol = tix_vol + Cells(r, 7).Value
+
+Range("I" & summary_row).Value = tix
+
+Range("J" & summary_row).Value = tix_vol
+
+summary_row = summary_row + 1
+
+tix_vol = 0
+
+Else
+
+tix_vol = tix_vol + Cells(r, 7).Value
+
+End If
+
+Next r
+
+
+End Sub
